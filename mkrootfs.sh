@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+MIRROR=https://mirrors.felixc.at/revyos/
+
 BOARD=${BOARD:-lpi4a} # lpi4a, ahead
 BOOT_SIZE=500M
 BOOT_IMG=""
@@ -81,10 +83,10 @@ make_rootfs()
     --include="ca-certificates debian-ports-archive-keyring revyos-keyring thead-gles-addons th1520-boot-firmware locales dosfstools \
         $BASE_TOOLS $XFCE_DESKTOP $BENCHMARK_TOOLS $FONTS $INCLUDE_APPS $EXTRA_TOOLS $LIBREOFFICE" \
     sid "$CHROOT_TARGET" \
-    "deb https://mirror.iscas.ac.cn/revyos/revyos-gles-21/ revyos-gles-21 main" \
-    "deb https://mirror.iscas.ac.cn/revyos/revyos-base/ sid main contrib non-free non-free-firmware" \
-    "deb https://mirror.iscas.ac.cn/revyos/revyos-kernels/ revyos-kernels main" \
-    "deb https://mirror.iscas.ac.cn/revyos/revyos-addons/ revyos-addons main"
+    "deb ${MIRROR}/revyos-gles-21/ revyos-gles-21 main" \
+    "deb ${MIRROR}/revyos-base/ sid main contrib non-free non-free-firmware" \
+    "deb ${MIRROR}/revyos-kernels/ revyos-kernels main" \
+    "deb ${MIRROR}/revyos-addons/ revyos-addons main"
 
     # move /boot contents to other place
     mv -v "$CHROOT_TARGET"/boot/* "$CHROOT_TARGET"/mnt/
