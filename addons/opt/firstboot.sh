@@ -17,5 +17,8 @@ genfstab -t PARTUUID / > /etc/fstab
 # regenerate openssh host keys
 dpkg-reconfigure openssh-server
 
+# update initramfs for init
+update-initramfs -c -k all
+
 # reboot
 reboot
